@@ -1,0 +1,19 @@
+{
+  "name": "note_book-backend",
+  "version": "1.0.0",
+  "description": "This is a seperate backend support for note-book project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adarsh Urmaliya",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.0",
+    "mongos": "^0.0.0"
+  }
+}
