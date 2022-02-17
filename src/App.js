@@ -1,10 +1,24 @@
-import './App.css';
-
+import "./App.css";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import About from "./components/About";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NoteState from "./context/notes/NoteState";
 function App() {
   return (
-    <div className="App">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dolorum asperiores laborum esse dignissimos quasi voluptatem dicta libero, maxime officia fuga ab perspiciatis deleniti itaque ipsa vel ullam sequi distinctio minima repellat accusamus dolores.
-    </div>
+    <>
+      <NoteState>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about">
+              <About />
+            </Route>
+          </Switch>
+        </Router>
+      </NoteState>
+    </>
   );
 }
 
