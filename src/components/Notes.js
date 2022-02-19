@@ -19,11 +19,4 @@ const Notes = () => {
   )
 }
 
-export default Notes
-//   
-//   return (
-//       <div className="container my-3">
-//         <h2>My Notes</h2>
-//         {notes.map((note) => {
-//           return <NotesItem note={note} />;
-//         })}
+export default Notes;

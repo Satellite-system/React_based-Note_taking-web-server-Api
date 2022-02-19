@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const NoteState = (props) => {
   const host = "http://localhost:5000"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwYTU2MjFmNmU3MzcwNzgxMjVjMmE0In0sImlhdCI6MTY0NDkwNzQ2NH0.qwGn6K2IWTTgT8hYwpTXM5k023Ty9zrAy6JVzJ7QiGY"
 
   const notesInitial = [];
   const [notes, setNotes] = useState(notesInitial);
@@ -11,7 +12,7 @@ const NoteState = (props) => {
   const getAllNotes = async () => {
     //Api Call
     const url = `${host}/api/notes/fetchallnotes`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwYTU2MjFmNmU3MzcwNzgxMjVjMmE0In0sImlhdCI6MTY0NDkwNzQ2NH0.qwGn6K2IWTTgT8hYwpTXM5k023Ty9zrAy6JVzJ7QiGY'
+    
     const response = await fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -26,28 +27,24 @@ const NoteState = (props) => {
 
 
   // Add a Note
-  const addNote = async (title, description, tag) => {
+  const addNote = async (title, discription, tag) => {
     console.log("new Note added");
     //Api Call
     const url = `${host}/api/notes/addnote`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwYTU2MjFmNmU3MzcwNzgxMjVjMmE0In0sImlhdCI6MTY0NDkwNzQ2NH0.qwGn6K2IWTTgT8hYwpTXM5k023Ty9zrAy6JVzJ7QiGY'
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
         "auth-token": token
       },
-      body: JSON.stringify(title, description, tag), // body data type must match "Content-Type" header
+      body: JSON.stringify({title, discription, tag}), // body data type must match "Content-Type" header
     });
-    const res = response.json(); // parses JSON response into native JavaScript objects
-    console.log(res);
-
 
     const note = {
-      _id: "620b6c49b7w782e9b7ds81226043",
+      _id: "620b6c49b7w782e9b7ds812260k43",
       user: "620a5621f6e737078125c2a4",
       title: title,
-      discription: description,
+      discription: discription,
       tag: tag,
       date: "2022-02-15T09:03:05.102Z",
       __v: 0,
@@ -57,13 +54,23 @@ const NoteState = (props) => {
   };
 
   // Delete a Note
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
     // TODO: Api Call
+    const url = `${host}/api/notes/deletenote/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token
+      }
+    });
+    const res = response.json(); // parses JSON response into native JavaScript objects
+    console.log("Deleted note "+res);
+
     const newNote = notes.filter((note) => {
       return note._id !== id;
     });
     setNotes(newNote);
-    console.log("to be Deleted " + id);
   };
 
   // Edit a Note
@@ -71,7 +78,6 @@ const NoteState = (props) => {
     // TODO : API CALL
     // Example POST method implementation:
     const url = `${host}/api/notes/updatenote/${id}`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwYTU2MjFmNmU3MzcwNzgxMjVjMmE0In0sImlhdCI6MTY0NDkwNzQ2NH0.qwGn6K2IWTTgT8hYwpTXM5k023Ty9zrAy6JVzJ7QiGY'
     const response = await fetch(url, {
       method: "PUT", // *GET, POST, PUT, DELETE, etc.
       headers: {
