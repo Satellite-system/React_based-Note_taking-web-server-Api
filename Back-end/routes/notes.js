@@ -20,7 +20,7 @@ router.post("/addnote", fetchuser,
   [
     //Incase of error/Invalid email message: Enter a valid email will be printed
     body("title", "Enter a valid Title").isLength({ min: 3 }), //title at least 3 chars long
-    body("discription", "Description must be atleast 2").isLength({ min: 2 })
+    body("discription", "Description must be atleast 3").isLength({ min: 3 })
   ],
   async (req, res) => {
     try {

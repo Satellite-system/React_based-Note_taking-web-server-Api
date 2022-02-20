@@ -21,14 +21,14 @@ const NoteState = (props) => {
       }
     });
     const res = await response.json(); // parses JSON response into native JavaScript objects
-    console.log(res);
+    // console.log(res);
     setNotes(res);
   };
 
 
   // Add a Note
   const addNote = async (title, discription, tag) => {
-    console.log("new Note added");
+    // console.log("new Note added");
     //Api Call
     const url = `${host}/api/notes/addnote`;
     const response = await fetch(url, {
@@ -39,16 +39,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title, discription, tag}), // body data type must match "Content-Type" header
     });
-
-    const note = {
-      _id: "620b6c49b7w782e9b7ds812260k43",
-      user: "620a5621f6e737078125c2a4",
-      title: title,
-      discription: discription,
-      tag: tag,
-      date: "2022-02-15T09:03:05.102Z",
-      __v: 0,
-    };
+    const note = await response.json(); // parses JSON response into native JavaScript objects
+    // console.log("Added note " +note);
 
     setNotes(notes.concat(note));
   };
@@ -65,7 +57,7 @@ const NoteState = (props) => {
       }
     });
     const res = response.json(); // parses JSON response into native JavaScript objects
-    console.log("Deleted note "+res);
+    // console.log("Deleted note "+res);
 
     const newNote = notes.filter((note) => {
       return note._id !== id;
@@ -74,9 +66,9 @@ const NoteState = (props) => {
   };
 
   // Edit a Note
-  const editNote = async (id, title, description, tag) => {
-    // TODO : API CALL
-    // Example POST method implementation:
+  const editNote = async (id, title, discription, tag) => {
+    // API CALL
+    //  PUT method implementation:
     const url = `${host}/api/notes/updatenote/${id}`;
     const response = await fetch(url, {
       method: "PUT", // *GET, POST, PUT, DELETE, etc.
@@ -84,21 +76,24 @@ const NoteState = (props) => {
         "Content-Type": "application/json",
         "auth-token": token
       },
-      body: JSON.stringify(title, description, tag), // body data type must match "Content-Type" header
+      body: JSON.stringify({title, discription, tag}), // body data type must match "Content-Type" header
     });
-    const res = response.json(); // parses JSON response into native JavaScript objects
-    console.log(res);
+    const res = await response.json(); // parses JSON response into native JavaScript objects
+    // console.log("updated note "+res);
     
+    let newNote = JSON.parse(JSON.stringify(notes));
 
     // logic to edit in client
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
-      if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+    for (let index = 0; index < newNote.length; index++) {
+      const element = newNote[index];
+      if (element._id===id) {
+        newNote[index].title = title;
+        newNote[index].discription = discription;
+        newNote[index].tag = tag;
+        break;
       }
     }
+    setNotes(newNote);
   };
 
   return (

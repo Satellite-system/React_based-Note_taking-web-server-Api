@@ -5,7 +5,7 @@ const Addnotes = () => {
   const context = useContext(NoteContext);
   const { addNote } = context;
 
-  const [noteVal, setNoteVal] = useState({InputTitle: '', InputDescription:'', InputTag:'default'});
+  const [noteVal, setNoteVal] = useState({InputTitle: '', InputDescription:'', InputTag:''});
 
   const handleChange = (e)=>{
     setNoteVal( {...noteVal, [e.target.name]:e.target.value})
@@ -15,7 +15,9 @@ const Addnotes = () => {
 
   const btnClicked = (e) => {
     e.preventDefault();
+    if(noteVal.InputTag.length==0) setNoteVal({InputTag:'General'});
     addNote(noteVal.InputTitle, noteVal.InputDescription, noteVal.InputTag);
+    setNoteVal({InputTitle: '', InputDescription:'', InputTag:''});
   };
 
   return (
@@ -29,9 +31,11 @@ const Addnotes = () => {
             className="form-control"
             id="InputTitle"
             name="InputTitle"
+            value={noteVal.InputTitle}
             aria-describedby="emailHelp"
             placeholder="Enter Title of the Note"
             onChange={handleChange}
+            required
           />
           <small id="emailHelp" className="form-text text-muted">
             Above text will appear as Title of your Note.
@@ -44,8 +48,10 @@ const Addnotes = () => {
             className="form-control"
             id="InputDescription"
             name="InputDescription"
+            value={noteVal.InputDescription}
             placeholder="Description of the Note"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group my-1">
@@ -53,6 +59,7 @@ const Addnotes = () => {
           <input
             className="form-control"
             id="InputTag"
+            value={noteVal.InputTag}
             name="InputTag"
             placeholder="Tag for the Note"
             onChange={handleChange}
@@ -63,6 +70,7 @@ const Addnotes = () => {
           type="submit"
           className="btn btn-primary my-1"
           onClick={btnClicked}
+          disabled = {noteVal.InputTitle<3 || noteVal.InputDescription<3}
         >
           Add Note
         </button>
