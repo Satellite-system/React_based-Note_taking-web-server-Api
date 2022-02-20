@@ -1,8 +1,9 @@
 import React, {useContext, useState} from "react";
 import NoteContext from "../context/notes/noteContext";
 
-const Addnotes = () => {
+const Addnotes = (props) => {
   const context = useContext(NoteContext);
+  const {showAlert} = props;
   const { addNote } = context;
 
   const [noteVal, setNoteVal] = useState({InputTitle: '', InputDescription:'', InputTag:''});
@@ -17,6 +18,7 @@ const Addnotes = () => {
     e.preventDefault();
     if(noteVal.InputTag.length==0) setNoteVal({InputTag:'General'});
     addNote(noteVal.InputTitle, noteVal.InputDescription, noteVal.InputTag);
+    showAlert("Note Added","success");
     setNoteVal({InputTitle: '', InputDescription:'', InputTag:''});
   };
 

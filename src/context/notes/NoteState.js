@@ -96,6 +96,8 @@ const NoteState = (props) => {
     setNotes(newNote);
   };
 
+  
+
   return (
     <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getAllNotes}}>
       {props.children}

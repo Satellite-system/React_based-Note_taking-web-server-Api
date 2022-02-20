@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import NotesItem from "./NotesItem";
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(NoteContext);
+  const {showAlert} = props;
   const { notes, getAllNotes, editNote } = context;
   const [noteVal, setNoteVal] = useState({
     eId: "",
@@ -43,6 +44,7 @@ const Notes = () => {
       noteVal.eInputTag
     );
     refClose.current.click();
+    showAlert("Successfully Edited Note","success");
   };
 
   return (
@@ -151,7 +153,7 @@ const Notes = () => {
         </div>
         {notes.map((note) => {
           return (
-            <NotesItem key={note._id} note={note} updateNote={updateNote} />
+            <NotesItem key={note._id} note={note} updateNote={updateNote} showAlert={showAlert}/>
           );
         })}
       </div>
