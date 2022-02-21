@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import NoteContext from "../context/notes/noteContext";
 import NotesItem from "./NotesItem";
 
 const Notes = (props) => {
   const context = useContext(NoteContext);
   const {showAlert} = props;
+  let history = useHistory();
   const { notes, getAllNotes, editNote } = context;
   const [noteVal, setNoteVal] = useState({
     eId: "",
@@ -13,7 +15,13 @@ const Notes = (props) => {
     eInputTag: "",
   });
   useEffect(() => {
-    getAllNotes();
+    if(localStorage.getItem("authToken")){
+      getAllNotes();
+    }else{
+      history.push('/login')
+    }
+
+    
   }, []);
   const ref = useRef(null);
   const refClose = useRef(null);

@@ -31,7 +31,7 @@ const Login = (props) => {
 
   return (
     <div className="container">
-      <h1 className="my-2">This is Login</h1>
+      <h1 className="my-2 text-primary">Login to Continue</h1>
 
       <form action="submit" onSubmit={loginReq}>
         <div className="mb-3">

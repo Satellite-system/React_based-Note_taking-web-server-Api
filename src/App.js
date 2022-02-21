@@ -26,12 +26,11 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <Navbar showAlert={showAlert}/>
-          <Alert alert={alert} />
+          <Navbar showAlert={showAlert} />
           <Switch>
-            <Route exact path="/"><Home showAlert={showAlert}/></Route>
-            <Route exact path="/login"><Login showAlert={showAlert}/></Route>
-            <Route exact path="/signup"><Signup showAlert={showAlert}/></Route>
+            <Route exact path="/"><Alert alert={alert} /><Home showAlert={showAlert}/></Route>
+            <Route exact path="/login"><Alert alert={alert} /><Login showAlert={showAlert}/></Route>
+            <Route exact path="/signup"><Alert alert={alert} /><Signup showAlert={showAlert}/></Route>
             <Route exact path="/about">
               <About />
             </Route>

@@ -34,7 +34,7 @@ const Signup = (props) => {
 
   return (
     <div className="container">
-      <h2 className="my-2">Sign UP Here</h2>
+      <h2 className="my-2 text-success">Create a Account to use NoteBook</h2>
       <form action="submit" onSubmit={singupReq}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">

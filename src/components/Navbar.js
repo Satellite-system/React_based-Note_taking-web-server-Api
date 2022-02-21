@@ -1,8 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Navbar() {
   let location = useLocation();
+  let history = useHistory();
+
+  const handleLogOut = ()=>{
+    localStorage.removeItem("authToken");
+    history.push('/login');
+  }
   // useEffect(() => {
   //   // console.log(location.pathname);
   // }, [location]);
@@ -31,15 +38,18 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${location.pathname=='/about'?'active':''}`} to="/about">
+              <Link className={`nav-link ${location.pathname==='/about'?'active':''}`} to="/about">
                 About
               </Link>
             </li>
           </ul>
+          {!localStorage.getItem("authToken")?
           <form className="d-flex">
           <Link className="btn btn-danger mx-2" to="login" role="button">LogIn</Link>
           <Link className="btn btn-success mx-2" to="signup" role="button">Sign Up</Link>
-          </form>
+          </form>:
+          <button className="btn btn-primary" onClick={handleLogOut}>Log Out</button>
+  }
         </div>
       </div>
     </nav>
