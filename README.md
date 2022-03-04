@@ -9,8 +9,7 @@ About Page :
 
 **Home Page :**
 
-![screenshot-localhost_3000-2022 02 21-20_34_15](https://user-images.githubusercontent.com/67074308/154981038-f860b717-cd97-490b-97ef-eed13d3b6c19.png)
-
+![screenshot-zakka-notebook netlify app-2022 03 05-01_10_13](https://user-images.githubusercontent.com/67074308/156830739-e0051c48-05c8-4974-9495-65d97fd7fd61.png)
 
 ## Available Scripts
 
