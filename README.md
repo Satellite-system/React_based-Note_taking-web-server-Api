@@ -11,6 +11,8 @@ About Page :
 
 ![screenshot-zakka-notebook netlify app-2022 03 05-01_10_13](https://user-images.githubusercontent.com/67074308/156830739-e0051c48-05c8-4974-9495-65d97fd7fd61.png)
 
+Deployed at : https://zakka-notebook.netlify.app  visit, to see complete funtionality of this website.
+
 ## Available Scripts
 
 In the project directory, you can run:
