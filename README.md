@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+Deployed at : https://zakka-notebook.netlify.app  visit, to see complete funtionality of this website.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 About Page : 
@@ -11,7 +13,7 @@ About Page :
 
 ![screenshot-zakka-notebook netlify app-2022 03 05-01_10_13](https://user-images.githubusercontent.com/67074308/156830739-e0051c48-05c8-4974-9495-65d97fd7fd61.png)
 
-Deployed at : https://zakka-notebook.netlify.app  visit, to see complete funtionality of this website.
+
 
 ## Available Scripts
 
